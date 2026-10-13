@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+int main() {
+    printf("ECB mode:\n");
+    printf("An error in one ciphertext block affects its corresponding plaintext block.\n");
+
+    printf("\nCBC mode:\n");
+    printf("An error in ciphertext block C1 corrupts P1 and flips corresponding bits in P2.\n");
+    printf("Blocks P3 onward are unaffected by a transmission error in C1.\n");
+
+    return 0;
+}
