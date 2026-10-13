@@ -1,0 +1,23 @@
+
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char p[100];
+    int k[100],i,n=0;
+
+    printf("Enter plaintext: ");
+    scanf("%99s",p);
+
+    while(p[n]) n++;
+
+    printf("Enter %d key numbers:\n",n);
+    for(i=0;i<n;i++) scanf("%d",&k[i]);
+
+    printf("Ciphertext: ");
+    for(i=0;i<n;i++)
+        printf("%c",(toupper(p[i])-'A'+k[i])%26+'A');
+
+    printf("\n");
+    return 0;
+}
