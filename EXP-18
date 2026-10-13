@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+int main() {
+    int shift[16]={1,1,2,2,2,2,2,2,
+                   1,2,2,2,2,2,2,1};
+    int i;
+
+    printf("DES round shift schedule:\n");
+    for(i=0;i<16;i++)
+        printf("Round %2d: shift %d\n",i+1,shift[i]);
+
+    return 0;
+}
