@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+    int p[5], c[5], d[5];
+    int key, counter, i;
+
+    printf("Enter 5 plaintext values (0-255): ");
+    for(i=0;i<5;i++) scanf("%d",&p[i]);
+
+    printf("Enter key and starting counter: ");
+    scanf("%d%d",&key,&counter);
+
+    for(i=0;i<5;i++)
+        c[i]=p[i]^(key^(counter+i));
+
+    printf("Ciphertext: ");
+    for(i=0;i<5;i++) printf("%d ",c[i]);
+
+    for(i=0;i<5;i++)
+        d[i]=c[i]^(key^(counter+i));
+
+    printf("\nDecrypted: ");
+    for(i=0;i<5;i++) printf("%d ",d[i]);
+
+    printf("\n");
+    return 0;
+}
