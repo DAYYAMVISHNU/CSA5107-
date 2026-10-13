@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main() {
+    int state=1600;
+    int rate=1024;
+    int lane=64;
+    int capacity=state-rate;
+
+    printf("State size = %d bits\n",state);
+    printf("Rate = %d bits\n",rate);
+    printf("Capacity = %d bits\n",capacity);
+    printf("Capacity lanes = %d\n",capacity/lane);
+
+    return 0;
+}
