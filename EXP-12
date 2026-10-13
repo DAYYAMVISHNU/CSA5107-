@@ -1,0 +1,25 @@
+
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char p[200];
+    int i,a,b,c,d;
+
+    printf("Enter plaintext without spaces: ");
+    scanf("%199s",p);
+
+    printf("Ciphertext: ");
+    for(i=0;p[i];i+=2) {
+        a=toupper(p[i])-'A';
+        b=p[i+1] ? toupper(p[i+1])-'A' : 23;
+
+        c=(9*a+4*b)%26;
+        d=(5*a+7*b)%26;
+
+        printf("%c%c",c+'A',d+'A');
+    }
+
+    printf("\n");
+    return 0;
+}
