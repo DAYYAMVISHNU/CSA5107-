@@ -1,0 +1,51 @@
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int gcd(int a, int b) {
+    while (b != 0) {
+        int t = b;
+        b = a % b;
+        a = t;
+    }
+    return a;
+}
+
+int inverse(int a) {
+    int i;
+    for (i = 1; i < 26; i++)
+        if ((a * i) % 26 == 1)
+            return i;
+    return -1;
+}
+
+int main() {
+    char c[500];
+    int a, b, i, x, d;
+
+    printf("Enter ciphertext: ");
+    fgets(c, sizeof(c), stdin);
+
+    for (a = 1; a < 26; a++) {
+        if (gcd(a, 26) != 1)
+            continue;
+
+        d = inverse(a);
+
+        for (b = 0; b < 26; b++) {
+            printf("\na=%d b=%d: ", a, b);
+
+            for (i = 0; c[i] != '\0'; i++) {
+                if (isalpha((unsigned char)c[i])) {
+                    x = toupper((unsigned char)c[i]) - 'A';
+                    putchar(((d * (x - b + 26)) % 26) + 'A');
+                } else {
+                    putchar(c[i]);
+                }
+            }
+        }
+    }
+
+    return 0;
+}
