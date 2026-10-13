@@ -1,0 +1,11 @@
+#include <stdio.h>
+
+int main() {
+    printf("If an RSA private key is leaked:\n");
+    printf("1. Stop using the compromised key.\n");
+    printf("2. Generate a new key pair with a new modulus.\n");
+    printf("3. Distribute the new public key securely.\n");
+    printf("4. Re-encrypt or re-protect affected data as needed.\n");
+
+    return 0;
+}
