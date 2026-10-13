@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+long long power(long long a,int x,int q) {
+    long long r=1;
+    while(x>0) {
+        if(x%2) r=r*a%q;
+        a=a*a%q;
+        x/=2;
+    }
+    return r;
+}
+
+int main() {
+    int q=23, g=5;
+    int a=6, b=15;
+    long long A, B, k1, k2;
+
+    A=power(g,a,q);
+    B=power(g,b,q);
+
+    k1=power(B,a,q);
+    k2=power(A,b,q);
+
+    printf("Alice sends: %lld\n",A);
+    printf("Bob sends: %lld\n",B);
+    printf("Alice shared key: %lld\n",k1);
+    printf("Bob shared key: %lld\n",k2);
+
+    return 0;
+}
