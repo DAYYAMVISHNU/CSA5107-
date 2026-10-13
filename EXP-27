@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+long long power(long long a,int e,int n) {
+    long long r=1;
+    while(e>0) {
+        if(e%2) r=r*a%n;
+        a=a*a%n;
+        e/=2;
+    }
+    return r;
+}
+
+int main() {
+    char s[100];
+    int e,n,i;
+
+    printf("Enter uppercase text: ");
+    scanf("%99s",s);
+    printf("Enter public exponent and modulus: ");
+    scanf("%d%d",&e,&n);
+
+    printf("Encrypted blocks: ");
+    for(i=0;s[i];i++)
+        printf("%lld ",power(s[i]-'A',e,n));
+
+    printf("\n");
+    return 0;
+}
