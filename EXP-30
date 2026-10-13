@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main() {
+    int x, key, t, second;
+
+    printf("Enter educational block X and key: ");
+    scanf("%d%d",&x,&key);
+
+    t=x^key;
+    second=(x^t)^key;
+
+    printf("MAC of X = %d\n",t);
+    printf("Second block X XOR T = %d\n",x^t);
+    printf("Educational second-block result = %d\n",second);
+
+    return 0;
+}
