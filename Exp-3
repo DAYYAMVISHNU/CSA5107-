@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+char m[5][5];
+
+void makeKey(char key[]) {
+    int used[26] = {0}, n = 0, i, j;
+    char s[26] = "", c;
+
+    for (i = 0; key[i]; i++) {
+        c = toupper((unsigned char)key[i]);
+        if (c == 'J') c = 'I';
+        if (c >= 'A' && c <= 'Z' && !used[c-'A']) {
+            used[c-'A'] = 1;
+            s[n++] = c;
+        }
+    }
+    for (c = 'A'; c <= 'Z'; c++) {
+        if (c == 'J') continue;
+        if (!used[c-'A']) s[n++] = c;
+    }
+    for (i = 0; i < 25; i++)
+        m[i/5][i%5] = s[i];
+}
+
+void encryptPair(char a, char b) {
+    int r1,c1,r2,c2,i,j;
+    for (i=0;i<5;i++)
+        for (j=0;j<5;j++) {
+            if(m[i][j]==a) r1=i,c1=j;
+            if(m[i][j]==b) r2=i,c2=j;
+        }
+    if (r1==r2)
+        printf("%c%c",m[r1][(c1+1)%5],m[r2][(c2+1)%5]);
+    else if (c1==c2)
+        printf("%c%c",m[(r1+1)%5][c1],m[(r2+1)%5][c2]);
+    else
+        printf("%c%c",m[r1][c2],m[r2][c1]);
+}
+
+int main() {
+    char key[100], text[200], p[200];
+    int i,n=0,j;
+
+    printf("Enter keyword: ");
+    scanf("%99s",key);
+    printf("Enter plaintext: ");
+    scanf(" %199[^\n]",text);
+
+    makeKey(key);
+    for(i=0;text[i];i++) {
+        char c=toupper((unsigned char)text[i]);
+        if(c>='A'&&c<='Z') {
+            if(c=='J') c='I';
+            p[n++]=c;
+        }
+    }
+    p[n]='\0';
+
+    printf("Ciphertext: ");
+    for(i=0;i<n;) {
+        char a=p[i],b;
+        if(i+1>=n) b='X',i++;
+        else if(a==p[i+1]) b='X',i++;
+        else b=p[i+1],i+=2;
+        encryptPair(a,b);
+    }
+    printf("\n");
+    return 0;
+}
